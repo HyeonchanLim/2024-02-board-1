@@ -13,8 +13,8 @@ Annotation(에노테이션)
 @PostMapping - url + Post 방식으로 요청이 왔을 시 담당자
 
 요청과 응답은 (header , body) 로 이루어져 있음
-header 에는 목적지(url) , 방식 , 인코딩 등등
-body 에는 값 , 데이터 담겨져있음
+header 에는 목적지(url) , 요청 방식(method) , 인코딩 등등
+body 에는 전송할 값 , 데이터 담겨져있음
 
 브라우저를 통해 요청을 보낼 때 url 과 method 를 함께 요청을 보낸다.
 브라우저의 주소창에 주소값을 적고 엔터는 url + get + 데이터 보내는 방식(key/value)으로 요청을 보낸다.
