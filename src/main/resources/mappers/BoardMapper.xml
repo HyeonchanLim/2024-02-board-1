@@ -15,6 +15,11 @@ html은 Hyper Text Markup Language 둘 다 마크업 언어이다.
 <insert id="연결할 메소드명">
 insert 쿼리문 작성!
 </insert>
+
+namespace 로 mapper 인터페이스랑 연결 ->
+메소드명 , sql 문법 작성 ->
+mapper 인터페이스에서 implements 한 곳에서 메소드 호출 ->
+sql 호출되어서 메소드 완성
 -->
 <mapper namespace="com.green.board.BoardMapper">
     <insert id="insBoard">
@@ -34,4 +39,28 @@ insert 쿼리문 작성!
         FROM board
         WHERE board_id = #{board_id}
     </select>
+
+    <update id="updBoard">
+        UPDATE board
+        <set>
+            <if test="title!=null and title != ''">
+                title=#{title}
+            </if>
+            <if test="contents != null and contents !=''">
+                , contents = #{contents}
+            </if>
+            <if test="writer != null and writer !=''">
+                , writer = #{writer}
+            </if>
+        </set>
+        WHERE board_id = #{boardId} <!-- { } 안에는 _ 사용 x ! -> 멤버필드명으로 작성 -->
+    </update>
+
+    <delete id="delBoard">
+        DELETE FROM board
+
+        WHERE board_id = #{boardId}
+        AND writer = #{writer}
+    </delete>
 </mapper>
+

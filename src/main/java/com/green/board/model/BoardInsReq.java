@@ -8,7 +8,7 @@ import lombok.ToString;
 @Getter
 @ToString
 
-public class BoardInsReq {
+public class BoardInsReq { // id 없어서 선택 불가능 / insert 만
     private String title;
     private String contents;
     private String writer;

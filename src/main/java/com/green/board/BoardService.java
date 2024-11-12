@@ -1,8 +1,6 @@
 package com.green.board;
 
-import com.green.board.model.BoardInsReq;
-import com.green.board.model.BoardSelOneRes;
-import com.green.board.model.BoardSelRes;
+import com.green.board.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +34,11 @@ public class BoardService {
     }
     public BoardSelOneRes selBoardOne(int p){
         return mapper.selBoardOne(p);
+    }
+    public int updBoard(BoardUpdReq p){
+        return mapper.updBoard(p);
+    }
+    public int delBoard(BoardDelReq p){
+        return mapper.delBoard(p);
     }
 }

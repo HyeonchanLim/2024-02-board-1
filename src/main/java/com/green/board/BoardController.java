@@ -96,9 +96,7 @@ JSON - 객체를 직렬화 해서 string 으로 전송
 
  */
 
-import com.green.board.model.BoardInsReq;
-import com.green.board.model.BoardSelOneRes;
-import com.green.board.model.BoardSelRes;
+import com.green.board.model.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -120,6 +118,10 @@ import java.util.List;
 // JSON 형태로 클라이언트에게 응답
 public class BoardController {
     private final BoardService service;
+    // 여기서 service 를 제거해도 service 클래스에 @service 애노테이션이 있어서 빈등록 되어 있음
+    // 대신 여기서 service 가 없으면 DI가 불가능해짐
+
+    // DI , 생성자작성 , final 선언하고 @RequiredArgsConstructor 하면 생성자 자동 생성
 
     //@RequiredArgsConstructor 애노테이션을 붙이면 아래 생성자가 자동으로 만들어진다.
 //    public BoardController(BoardService boardService) {
@@ -133,8 +135,13 @@ public class BoardController {
     public int insBoard(@RequestBody BoardInsReq p){
         System.out.println(p);
         return service.insBoard(p);
-
     }
+
+    // 똑같은 메소드 2개 던지면 뭐를 해야할지 몰라서 에러가 발생함 주의!
+//    public String strBoard(BoardInsReq p){
+//        return "";
+//    }
+
     // 객체 > json 바꾸는 직렬화 작업
     @GetMapping
     // 위에서 @RequestMapping("/board") 해놨기 때문에 여기 메소드 부분은 /board로 실행
@@ -148,6 +155,22 @@ public class BoardController {
     public BoardSelOneRes selBoardOne(@PathVariable int boardId){
         System.out.println(boardId);
         return service.selBoardOne(boardId);
+    }
+    @PutMapping
+    public int updBoard(@RequestBody BoardUpdReq p){
+        System.out.println(p);
+        return service.updBoard(p);
+    }
+
+    /*
+    @ModelAttribute : FormData or Query String 데이터를 받을 수 있다.
+    post , put , patch 만 @RequestBody 사용  why? 데이터가 많아서 json 으로 처리하기 위해
+
+     */
+    @DeleteMapping
+    public int delBoard(@ModelAttribute BoardDelReq p) {
+        System.out.println(p);
+        return service.delBoard(p);
     }
 }
 

@@ -1,8 +1,6 @@
 package com.green.board;
 
-import com.green.board.model.BoardInsReq;
-import com.green.board.model.BoardSelOneRes;
-import com.green.board.model.BoardSelRes;
+import com.green.board.model.*;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
@@ -20,9 +18,14 @@ insert , update , delete 의 리턴타입은 int 하면 됨.
 // mybatis를 사용해 mapper 가 sql쿼리를 db에 실행하도록 매핑
 // mapper.xml 에 namespace 로 mapper 인터페이스로 연결 -> 인터페이스에서 xml 쿼리문 사용 가능
 // 클래스에서 인터페이스에 있는 메소드(파라미터)로 데이터 넘어오면 xml에 작성한 쿼리문으로 실행
+
+// mapper 는 batis에서 제공하는 애노테이션 - DAO 만들 때
+// insert , update , select 는 전부 int
 @Mapper
 public interface BoardMapper {
     int insBoard(BoardInsReq p);
     List<BoardSelRes> selBoardList();
     BoardSelOneRes selBoardOne(int p);
+    int updBoard(BoardUpdReq p);
+    int delBoard(BoardDelReq p);
 }
