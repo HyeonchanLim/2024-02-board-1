@@ -15,7 +15,6 @@ import java.util.List;
 xml + interface 파일을 이용해서 implements 한 class 파일을 만들 것이고 빈등록까지 해준다.
 스프링 컨테이너가 빈등록한 class 파일을 객체화 할 것이다.
 여기서 만든 주소값은 BoardService 객체화 할 때 DI 해준다.
-
  */
 
 @RequiredArgsConstructor
